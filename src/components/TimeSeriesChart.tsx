@@ -1,29 +1,20 @@
-// src/components/TimeSeriesChart.tsx
-import React from 'react';
-import ReactApexChart from 'react-apexcharts';
+import React from "react";
+import ReactApexChart from "react-apexcharts";
 
-interface TimeSeriesChartProps {
-  data: { date: string; visitors: number }[];
-}
+const TimeSeriesChart: React.FC = () => {
+  const options = {
+    chart: { id: "visitors-chart" },
+    xaxis: { categories: ["2024-01-01", "2024-01-02", "2024-01-03"] },
+  };
 
-const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({ data }) => {
   const series = [
     {
       name: "Visitors",
-      data: data.map((d) => ({ x: d.date, y: d.visitors })),
+      data: [30, 40, 35], // Dummy data
     },
   ];
 
-  const options = {
-    chart: {
-      type: 'line',
-    },
-    xaxis: {
-      type: 'datetime',
-    },
-  };
-
-  return <ReactApexChart options={options} series={series} type="line" />;
+  return <ReactApexChart options={options} series={series} type="line" height={350} />;
 };
 
 export default TimeSeriesChart;

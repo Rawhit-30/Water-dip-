@@ -1,31 +1,28 @@
-// src/components/SparklineChart.tsx
-import React from 'react';
-import ReactApexChart from 'react-apexcharts';
+import React from "react";
+import ReactApexChart from "react-apexcharts";
 
 interface SparklineChartProps {
-  data: number[];
-  label: string;
+  title: string;
 }
 
-const SparklineChart: React.FC<SparklineChartProps> = ({ data, label }) => {
-  const series = [
-    {
-      name: label,
-      data,
-    },
-  ];
-
+const SparklineChart: React.FC<SparklineChartProps> = ({ title }) => {
   const options = {
     chart: {
-      type: 'line',
       sparkline: { enabled: true },
     },
-    stroke: {
-      curve: 'smooth',
+    xaxis: {
+      categories: ["2024-01-01", "2024-01-02", "2024-01-03"],
     },
   };
 
-  return <ReactApexChart options={options} series={series} type="line" />;
+  const series = [
+    {
+      name: title,
+      data: [15, 10, 12], // Dummy data
+    },
+  ];
+
+  return <ReactApexChart options={options} series={series} type="line" height={100} />;
 };
 
 export default SparklineChart;
